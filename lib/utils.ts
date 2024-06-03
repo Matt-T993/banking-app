@@ -1,4 +1,5 @@
 /* eslint-disable no-prototype-builtins */
+import { AccountTypes, CategoryCount, Transaction } from "@/types";
 import { type ClassValue, clsx } from "clsx";
 import qs from "query-string";
 import { twMerge } from "tailwind-merge";
@@ -203,9 +204,10 @@ export const authFormSchema = (type: string) =>
     address1: type === "sign-in" ? z.string().optional() : z.string().max(50),
     city: type === "sign-in" ? z.string().optional() : z.string().max(20),
     state:
-      type === "sign-in" ? z.string().optional() : z.string().min(3).max(3),
-    postalCode: type === "sign-in" ? z.string().optional() : z.string().max(4),
+      type === "sign-in" ? z.string().optional() : z.string().min(2).max(3),
+    postalCode: type === "sign-in" ? z.string().optional() : z.string().max(5),
     dateOfBirth: type === "sign-in" ? z.string().optional() : z.string().min(3),
+    ssn: type === "sign-in" ? z.string().optional() : z.string().max(4),
     //both
     email: z.string().email(),
     password: z.string().min(8, {
