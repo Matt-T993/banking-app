@@ -126,14 +126,15 @@ export const createLinkToken = async (user: User) => {
 
 export const createBankAccount = async ({
   userId,
-bankId,
-accountId,
-accessToken,
-fundingSourceUrl,
-shareableId,
+  bankId,
+  accountId,
+  accessToken,
+  fundingSourceUrl,
+  shareableId,
 }: createBankAccountProps) => {
   try {
-    const {database} = await createAdminClient()
+    const { database } = await createAdminClient();
+
     const bankAccount = await database.createDocument(
       DATABASE_ID!,
       BANK_COLLECTION_ID!,
@@ -148,12 +149,12 @@ shareableId,
       }
     )
 
-    return parseStringify(bankAccount)
+    return parseStringify(bankAccount);
   } catch (error) {
-    
+    console.log(error);
   }
-
 }
+
 // This function exchanges a public token for an access token and item ID
 export const exchangePublicToken = async ({
   publicToken,
